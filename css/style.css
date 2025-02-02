@@ -1,0 +1,27 @@
+:root {
+  --main-purple: rgb(132, 0, 255);
+  --secondary-orange: rgb(255, 132, 0);
+  --tertiary-green: rgb(0, 255, 132);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 100vh;
+}
+
+.header {
+  grid-column: 2 / -1;
+  background-color: aqua; /* Visibility */
+}
+
+.sidebar {
+  background-color: greenyellow; /* Visibility */
+  grid-row: 1 / 3;
+}
