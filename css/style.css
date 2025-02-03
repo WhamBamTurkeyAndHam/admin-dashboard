@@ -10,18 +10,85 @@
   box-sizing: border-box;
 }
 
-.main-container {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  height: 100vh;
+body, button, input, select, textarea, option, optgroup, legend, fieldset, output {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  height: 100vh;
+  grid-template-areas: 
+  'sidebar header'
+  'sidebar main';
+}
+
+/* Header */
 .header {
   grid-column: 2 / -1;
   background-color: aqua; /* Visibility */
 }
 
+/* Sidebar */
 .sidebar {
-  background-color: greenyellow; /* Visibility */
-  grid-row: 1 / 3;
+  display: grid;
+  background-color: var(--main-purple);
+  box-shadow: 5px 0px 5px 0px rgba(0,0,0,0.75);
+  grid-area: sidebar;
+  padding: 1rem;
+  grid-template-rows: auto 1fr;
+}
+
+.sidebar > h2 {
+  display: flex;
+  font-size: 2rem;
+  font-weight: 750;
+  align-items: center;
+  color: var(--secondary-orange);
+  cursor: default;
+}
+
+.sidebar-divider {
+  height: 2px;
+  width: 100%;
+  margin: 10px 0 10px 0;
+  background-color: var(--secondary-orange);
+  border-radius: 1px;
+}
+
+.icons {
+  width: 2.5rem;
+  margin-right: 10px;
+}
+
+.sidebar-buttons > button,
+.lower-credits > button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: var(--main-purple);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.sidebar-buttons > button:hover,
+.lower-credits > button:hover {
+  background-color: white;
+  font-weight: 800;
+  color: var(--main-purple);
+  transition: all 0.25s;
+}
+
+.lower-credits {
+  align-self: end;
+}
+
+.lower-credits > button {
+  font-size: 1rem;
 }
