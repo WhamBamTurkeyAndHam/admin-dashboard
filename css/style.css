@@ -18,7 +18,7 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
 
 .main-container {
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template: 1fr 4fr / 1fr 6fr;
   height: 100vh;
   grid-template-areas: 
   'sidebar header'
@@ -27,8 +27,125 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
 
 /* Header */
 .header {
-  grid-column: 2 / -1;
-  background-color: aqua; /* Visibility */
+  display: grid;
+  grid-area: header;
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+  padding: 1rem 3rem;
+  z-index: 1;
+  grid-template: 1fr 1fr / 3fr 1fr;
+  gap: 1rem;
+}
+
+.header-fade {
+  transition: ease-in all 0.25s;
+  cursor: pointer;
+}
+
+.header-fade:hover {
+  transition: ease-out all 0.25s;
+  color: var(--secondary-orange);
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-self: center;
+  gap: 1rem;
+}
+
+form {
+  display: flex;
+  flex: 1;
+}
+
+input[type = search] {
+  font-size: 1.5rem;
+  font-weight: 600;
+  outline: var(--main-purple) solid 5px;
+  border: none;
+  background-color: rgb(201, 193, 255);
+  height: 1rem;
+  border-radius: 25px;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+input:focus {
+  outline: var(--secondary-orange) solid 5px;
+}
+
+/* User Account */
+.user-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.user-icons {
+  width: 3rem;
+  cursor: pointer;
+}
+
+.profile-icon-small {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.user-name {
+  font-size: 2rem;
+  font-weight: 550;
+}
+
+/* User Account Message */
+.user-account-message {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user-greeting {
+  font-size: 1.5rem;
+}
+
+.user-profile {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.profile-icon-big {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Content Buttons */
+.content-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.content-buttons > button {
+  border: white solid 3px;
+  background-color: var(--main-purple);
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: ease-out all 0.25s;
+}
+
+.content-buttons > button:hover {
+  border: var(--main-purple) solid 3px;
+  background-color: white;
+  color: var(--main-purple);
+  transition: ease-in all 0.25s;
 }
 
 /* Sidebar */
@@ -39,6 +156,7 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
   grid-area: sidebar;
   padding: 1rem;
   grid-template-rows: auto 1fr;
+  z-index: 2;
 }
 
 .sidebar > h2 {
@@ -61,6 +179,7 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
 .icons {
   width: 2.5rem;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .sidebar-buttons > button,
@@ -75,6 +194,7 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
   padding: 5px;
   width: 100%;
   border-radius: 15px;
+  transition: ease-out all 0.25s;
 }
 
 .sidebar-buttons > button:hover,
@@ -82,7 +202,7 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
   background-color: white;
   font-weight: 800;
   color: var(--main-purple);
-  transition: all 0.25s;
+  transition: ease-in all 0.25s;
 }
 
 .lower-credits {
@@ -91,4 +211,10 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
 
 .lower-credits > button {
   font-size: 1rem;
+}
+
+/* Main Content */
+.main-content {
+  background-color: rgb(200, 200, 200);
+  padding: 1rem;
 }
