@@ -25,6 +25,16 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
   'sidebar main';
 }
 
+.text-fade {
+  transition: ease-in all 0.15s;
+  cursor: pointer;
+}
+
+.text-fade:hover {
+  transition: ease-out all 0.15s;
+  color: var(--secondary-orange);
+}
+
 /* Header */
 .header {
   display: grid;
@@ -34,16 +44,6 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
   z-index: 1;
   grid-template: 1fr 1fr / 3fr 1fr;
   gap: 1rem;
-}
-
-.header-fade {
-  transition: ease-in all 0.25s;
-  cursor: pointer;
-}
-
-.header-fade:hover {
-  transition: ease-out all 0.25s;
-  color: var(--secondary-orange);
 }
 
 /* Search Bar */
@@ -215,6 +215,99 @@ input:focus {
 
 /* Main Content */
 .main-content {
+  display: grid;
   background-color: rgb(200, 200, 200);
   padding: 1rem;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: 
+  'user-projects announcements'
+  'user-projects trending';
+}
+
+.user-projects {
+  grid-area: user-projects;
+}
+
+.user-news {
+  display: grid;
+}
+
+.announcement-container,
+.other-users-container {
+  flex: 1;
+}
+
+.announcements,
+.trending {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcement-background,
+.trending-background {
+  display: flex;
+  flex: 1;
+  background-color: white;
+  border-radius: 30px;
+  margin: 10px;
+  padding: 2rem;
+}
+
+.announcements > h2,
+.trending > h2 {
+  margin-left: 15px;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.announcement-container > h3 {
+  display: flex;
+  align-items: center;
+}
+
+.announcement-paragraph {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.other-users-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.other-users {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+.other-user-profiles {
+  font-size: 1.5rem;
+}
+
+.image-credits {
+  text-decoration: none;
+  background-color: var(--main-purple);
+  border: white solid 2px;
+  color: white;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  transition: all 0.25s;
+}
+
+.image-credits:hover {
+  background-color: white;
+  border: var(--main-purple) solid 2px;
+  color: var(--main-purple);
+  transition: all 0.25s;
 }
