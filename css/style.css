@@ -224,10 +224,29 @@ input:focus {
   'user-projects trending';
 }
 
+/* User Project Section */
 .user-projects {
   grid-area: user-projects;
+  margin: 0 3rem 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-rows: auto;
+  grid-auto-rows: minmax(400px, auto);
+  gap: 2rem;
 }
 
+.user-projects > h2 {
+  grid-column: 1 / -1;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* User News Section */
 .user-news {
   display: grid;
 }
