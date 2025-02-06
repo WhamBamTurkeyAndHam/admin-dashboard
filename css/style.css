@@ -267,7 +267,7 @@ input:focus-visible {
 }
 
 .card:focus-visible {
-  outline: var(--tertiary-green) solid 5px;
+  outline: var(--main-purple) solid 5px;
 }
 
 .card-main-container {
