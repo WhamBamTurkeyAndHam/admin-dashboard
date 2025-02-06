@@ -11,6 +11,14 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: var(--secondary-orange) solid 5px;
+}
+
 body, button, input, select, textarea, option, optgroup, legend, fieldset, output {
   font-family: "Figtree", sans-serif;
   font-optical-sizing: auto;
@@ -72,7 +80,7 @@ input[type = search] {
   flex: 1;
 }
 
-input:focus {
+input:focus-visible {
   outline: var(--secondary-orange) solid 5px;
 }
 
@@ -256,6 +264,10 @@ input:focus {
   box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
   transition: ease-in all 0.25s;
   transform: scale(1.03);
+}
+
+.card:focus-visible {
+  outline: var(--tertiary-green) solid 5px;
 }
 
 .card-main-container {
