@@ -2,6 +2,7 @@
   --main-purple: rgb(132, 0, 255);
   --secondary-orange: rgb(255, 132, 0);
   --tertiary-green: rgb(0, 255, 132);
+  --checkbox-height: 25px;
 }
 
 * {
@@ -18,7 +19,8 @@ body, button, input, select, textarea, option, optgroup, legend, fieldset, outpu
 
 .main-container {
   display: grid;
-  grid-template: 1fr 4fr / 1fr 6fr;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr 6fr;
   height: 100vh;
   grid-template-areas: 
   'sidebar header'
@@ -189,7 +191,7 @@ input:focus {
   border: none;
   background-color: var(--main-purple);
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   cursor: pointer;
   padding: 5px;
   width: 100%;
@@ -217,9 +219,10 @@ input:focus {
 .main-content {
   display: grid;
   background-color: rgb(200, 200, 200);
-  padding: 1rem;
+  padding: 2rem 4rem 2rem 4rem;
   grid-template-columns: 4fr 1fr;
   grid-template-areas: 
+  'user-projects-title announcements'
   'user-projects announcements'
   'user-projects trending';
 }
@@ -227,28 +230,241 @@ input:focus {
 /* User Project Section */
 .user-projects {
   grid-area: user-projects;
-  margin: 0 3rem 0 3rem;
+  margin-right: 6rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-template-rows: auto;
-  grid-auto-rows: minmax(400px, auto);
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: 400px;
   gap: 2rem;
 }
 
-.user-projects > h2 {
+.main-content > h2 {
+  grid-area: user-projects-title;
   grid-column: 1 / -1;
-  font-size: 2rem;
-  margin-top: 10px;
+  font-size: 3rem;
+  margin: 10px 0 2rem 0;
 }
 
 .card {
   background-color: white;
   border-radius: 25px;
+  transition: ease-out all 0.25s;
+  height: 100%;
+  display: grid;
+}
+
+.card:hover {
+  box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+  transition: ease-in all 0.25s;
+  transform: scale(1.03);
+}
+
+.card-main-container {
+  display: grid;
+  height: 100%;
+  grid-template-areas: 
+  'completion-color card-text'
+  'completion-color card-button-wrapper';
+}
+
+.card-button-wrapper {
+  display: grid;
+  grid-area: card-button-wrapper;
+  margin-top: 2rem;
+}
+
+.card-divider {
+  justify-self: center;
+  height: 2px;
+  width: 90%;
+  background-color: var(--secondary-orange);
+  border-radius: 1px;
+}
+
+.card-task-color {
+  height: 100%;
+  width: 25px;
+  border-radius: 25px 0 0 25px;
+  background-color: var(--secondary-orange);
+  transition: all ease-out 0.25s;
+  grid-area: completion-color;
+}
+
+.card:has(.checkbox-wrapper-19 input:checked) 
+.card-task-color,
+.card:has(.checkbox-wrapper-19 input:checked) 
+.card-divider {
+  background-color: var(--tertiary-green);
+  transition: all ease-in 0.25s;
+}
+
+.card-text {
+  grid-area: card-text;
+  padding: 3rem 3rem 0 3rem;
+  height: 200px;
+}
+
+.card-text > h4 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card-text > p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.card-buttons {
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Checkbox design by Jimmy Gillam on https://getcssscan.com/css-checkboxes-examples */
+.checkbox-wrapper-19 {
+  height: 25px;
+}
+
+.checkbox-wrapper-19 input[type=checkbox] {
+  display: none;
+}
+
+.checkbox-wrapper-19 .check-box {
+  height: var(--checkbox-height);
+  width: var(--checkbox-height);
+  background-color: transparent;
+  border: calc(var(--checkbox-height) * .1) solid #000;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+  transition: border-color ease 0.2s;
+  cursor: pointer;
+  margin: 0 20px 0 20px
+}
+
+.checkbox-wrapper-19 .check-box::before,
+.checkbox-wrapper-19 .check-box::after {
+  box-sizing: border-box;
+  position: absolute;
+  height: 0;
+  width: calc(var(--checkbox-height) * .2);
+  background-color: var(--secondary-orange);
+  display: inline-block;
+  transform-origin: left top;
+  border-radius: 5px;
+  content: " ";
+  transition: opacity ease 0.5;
+}
+
+.checkbox-wrapper-19 .check-box::before {
+  top: calc(var(--checkbox-height) * .72);
+  left: calc(var(--checkbox-height) * .41);
+  box-shadow: 0 0 0 calc(var(--checkbox-height) * .05) var(--background-color);
+  transform: rotate(-135deg);
+}
+
+.checkbox-wrapper-19 .check-box::after {
+  top: calc(var(--checkbox-height) * .37);
+  left: calc(var(--checkbox-height) * .05);
+  transform: rotate(-45deg);
+}
+
+.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box,
+.checkbox-wrapper-19 .check-box.checked {
+  border-color: var(--tertiary-green);
+}
+
+.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::after,
+.checkbox-wrapper-19 .check-box.checked::after {
+  height: calc(var(--checkbox-height) / 2);
+  animation: dothabottomcheck-19 0.2s ease 0s forwards;
+}
+
+.checkbox-wrapper-19 input[type=checkbox]:checked + .check-box::before,
+.checkbox-wrapper-19 .check-box.checked::before {
+  height: calc(var(--checkbox-height) * 1.2);
+  animation: dothatopcheck-19 0.4s ease 0s forwards;
+}
+
+@-moz-keyframes dothabottomcheck-19 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) / 2);
+  }
+}
+
+@-webkit-keyframes dothabottomcheck-19 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) / 2);
+  }
+}
+
+@keyframes dothabottomcheck-19 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) / 2);
+  }
+}
+
+@keyframes dothatopcheck-19 {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) * 1.2);
+  }
+}
+
+@-webkit-keyframes dothatopcheck-19 {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) * 1.2);
+  }
+}
+
+@-moz-keyframes dothatopcheck-19 {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 0;
+  }
+  100% {
+    height: calc(var(--checkbox-height) * 1.2);
+  }
+}
+
+.card-icons {
+  width: 2.5rem;
+  margin: 0 20px 0 20px;
+  cursor: pointer;
 }
 
 /* User News Section */
 .user-news {
-  display: grid;
+  grid-area: announcements;
 }
 
 .announcement-container,
@@ -268,15 +484,21 @@ input:focus {
   flex: 1;
   background-color: white;
   border-radius: 30px;
-  margin: 10px;
   padding: 2rem;
 }
 
 .announcements > h2,
 .trending > h2 {
-  margin-left: 15px;
+  margin-bottom: 15px;
   font-size: 2rem;
-  margin-top: 10px;
+}
+
+.announcements > h2 {
+  margin-top: 2.75rem;
+}
+
+.trending > h2 {
+  margin-top: 1rem;
 }
 
 .announcement-container > h3 {
